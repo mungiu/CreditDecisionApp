@@ -1,0 +1,423 @@
+{
+	"info": {
+		"_postman_id": "baeb0e63-9b8a-44e0-8143-57ba3ffc8ef7",
+		"name": "DanskeBankApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Decision - Values Wrong Format",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"2000,000 000 000 000 000 000 000 000 0\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"19999,99\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values <= ZERO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"0\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values > ZERO Boundary MIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('No');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"3\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"0,1\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"0,0000001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values < Second Boundary MAX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('No');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"3\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"0,99\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"19999,00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values < Second Boundary MAX Rounding",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('No');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"3\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"1999,99999999999999999999999945\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"18000,0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values < Third Boundary MAX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('No');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"4\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"1999,99999999999999999999999945\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"38000,0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values < Fourth Boundary MAX",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('Yes');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"5\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"2000\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"57999,99999999999999999999999945\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decision - Values < Fifth Boundary MIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The response has all properties\", () => {\r",
+							"    //parse the response json and test three properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.TheDecision).to.eql('Yes');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.eql(\"6\");\r",
+							"    pm.expect(responseJson.TheDecision).to.be.a('string');\r",
+							"    pm.expect(responseJson.InterestRatePercentage).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"appliedAmount\": \"60000\",\r\n  \"monthsRepaymentTerm\": 1,\r\n  \"totalCurrentDebt\": \"0,000000000000000000000001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/decision",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"decision"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

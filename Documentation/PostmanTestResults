@@ -1,0 +1,302 @@
+{
+	"id": "7b42f4d8-7383-4a25-8c81-90358aec174d",
+	"name": "DanskeBankApp",
+	"timestamp": "2021-04-13T21:53:35.485Z",
+	"collection_id": "baeb0e63-9b8a-44e0-8143-57ba3ffc8ef7",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 14,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "02534300-1fd4-4021-84ac-a45e0517deab",
+			"name": "Decision - Values Wrong Format",
+			"url": "https://localhost:5001/api/decision",
+			"time": 69,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				69
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "1f522016-1a9d-445f-ba9f-c9bca5941099",
+			"name": "Decision - Values <= ZERO",
+			"url": "https://localhost:5001/api/decision",
+			"time": 33,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "92af4814-3dff-460f-a8af-62f4db03d499",
+			"name": "Decision - Values > ZERO Boundary MIN",
+			"url": "https://localhost:5001/api/decision",
+			"time": 5173,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5173
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		},
+		{
+			"id": "3d6b99c7-8599-448f-9f4f-4a98269f6713",
+			"name": "Decision - Values < Second Boundary MAX",
+			"url": "https://localhost:5001/api/decision",
+			"time": 2,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		},
+		{
+			"id": "7566b24e-a32f-4152-b126-3a2b9fff258f",
+			"name": "Decision - Values < Second Boundary MAX Rounding",
+			"url": "https://localhost:5001/api/decision",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		},
+		{
+			"id": "f4b33173-2409-47fb-b56d-5c92c4eff59b",
+			"name": "Decision - Values < Third Boundary MAX",
+			"url": "https://localhost:5001/api/decision",
+			"time": 2,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		},
+		{
+			"id": "ae54eca7-bdb2-4aa5-8ba3-cec430cdc1ba",
+			"name": "Decision - Values < Fourth Boundary MAX",
+			"url": "https://localhost:5001/api/decision",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		},
+		{
+			"id": "8f4d5477-983c-4f6f-9c77-97c533ed5012",
+			"name": "Decision - Values < Fifth Boundary MIN",
+			"url": "https://localhost:5001/api/decision",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"The response has all properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response has all properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"The response has all properties": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 5291,
+	"collection": {
+		"requests": [
+			{
+				"id": "02534300-1fd4-4021-84ac-a45e0517deab",
+				"method": "GET"
+			},
+			{
+				"id": "1f522016-1a9d-445f-ba9f-c9bca5941099",
+				"method": "GET"
+			},
+			{
+				"id": "92af4814-3dff-460f-a8af-62f4db03d499",
+				"method": "GET"
+			},
+			{
+				"id": "3d6b99c7-8599-448f-9f4f-4a98269f6713",
+				"method": "GET"
+			},
+			{
+				"id": "7566b24e-a32f-4152-b126-3a2b9fff258f",
+				"method": "GET"
+			},
+			{
+				"id": "f4b33173-2409-47fb-b56d-5c92c4eff59b",
+				"method": "GET"
+			},
+			{
+				"id": "ae54eca7-bdb2-4aa5-8ba3-cec430cdc1ba",
+				"method": "GET"
+			},
+			{
+				"id": "8f4d5477-983c-4f6f-9c77-97c533ed5012",
+				"method": "GET"
+			}
+		]
+	}
+}
