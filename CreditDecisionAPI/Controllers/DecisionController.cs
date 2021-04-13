@@ -31,7 +31,7 @@ namespace CreditDecisionAPI.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("DecisionController: " + e.Message);
             }
 
 
