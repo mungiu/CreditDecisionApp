@@ -8,6 +8,7 @@ namespace CreditDecisionAPI.Models
     public class DecisionInput
     {
         public string AppliedAmount  { get; set; }
-        public string TotalFutureDebt { get; set; }
+        public string MonthsRepaymentTerm { get; set; }
+        public string TotalCurrentDebt { get; set; }
     }
 }

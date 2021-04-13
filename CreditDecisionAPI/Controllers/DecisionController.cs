@@ -20,7 +20,7 @@ namespace CreditDecisionAPI.Controllers
         {
             try
             {
-                if (decimal.Parse(decisionInput.AppliedAmount) <= 0 || decimal.Parse(decisionInput.TotalFutureDebt) <= 0)
+                if (decimal.Parse(decisionInput.AppliedAmount) <= 0 || decimal.Parse(decisionInput.TotalCurrentDebt) <= 0)
                 {
                     return BadRequest("The 'Applied Amount' and 'Total Future Debt' must be greater than zero.");
                 }
@@ -40,19 +40,23 @@ namespace CreditDecisionAPI.Controllers
 
         private DecisionOutput Decide(DecisionInput decisionInput)
         {
-            DecisionOutput decisionOutput = new DecisionOutput();
-
-            decisionOutput.TheDecision = (
+            DecisionOutput decisionOutput = new DecisionOutput
+            {
+                TheDecision = (
                decimal.Parse(decisionInput.AppliedAmount) >= DecisionEnums.MIN_APPLICATION_AMOUNT &&
                decimal.Parse(decisionInput.AppliedAmount) <= DecisionEnums.MAX_APPLICATION_AMOUNT) ?
-               "Yes" : "No";
+               "Yes" : "No",
 
-            decisionOutput.InterestRatePercentage = decimal.Parse(decisionInput.TotalFutureDebt) switch
-            {
-                decimal TotalFutureDebt when TotalFutureDebt < 20000 => 3.ToString(),
-                decimal TotalFutureDebt when TotalFutureDebt < 40000 => 4.ToString(),
-                decimal TotalFutureDebt when TotalFutureDebt < 60000 => 5.ToString(),
-                _ => 6.ToString(),
+                InterestRatePercentage = decimal.Parse(decisionInput.TotalCurrentDebt) switch
+                {
+                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
+                    < 20000 => 3.ToString(),
+                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
+                    < 40000 => 4.ToString(),
+                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
+                    < 60000 => 5.ToString(),
+                    _ => 6.ToString(),
+                }
             };
 
             return decisionOutput;
