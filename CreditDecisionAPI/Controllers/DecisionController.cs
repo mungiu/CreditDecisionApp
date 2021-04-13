@@ -40,6 +40,7 @@ namespace CreditDecisionAPI.Controllers
 
         private DecisionOutput Decide(DecisionInput decisionInput)
         {
+            decimal totalFutureDebt = decimal.Add(decimal.Parse(decisionInput.TotalCurrentDebt), decimal.Parse(decisionInput.AppliedAmount));
             DecisionOutput decisionOutput = new DecisionOutput
             {
                 TheDecision = (
@@ -47,14 +48,11 @@ namespace CreditDecisionAPI.Controllers
                decimal.Parse(decisionInput.AppliedAmount) <= DecisionEnums.MAX_APPLICATION_AMOUNT) ?
                "Yes" : "No",
 
-                InterestRatePercentage = decimal.Parse(decisionInput.TotalCurrentDebt) switch
+                InterestRatePercentage = totalFutureDebt switch
                 {
-                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
-                    < 20000 => 3.ToString(),
-                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
-                    < 40000 => 4.ToString(),
-                    decimal TotalFutureDebt when TotalFutureDebt + decimal.Parse(decisionInput.AppliedAmount) 
-                    < 60000 => 5.ToString(),
+                    decimal TFD when TFD < 20000 => 3.ToString(),
+                    decimal TFD when TFD < 40000 => 4.ToString(),
+                    decimal TFD when TFD <= 60000 => 5.ToString(),
                     _ => 6.ToString(),
                 }
             };
